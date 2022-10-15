@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=Poppins:ital,wght@0,100;0,500;1,200;1,800&display=swap');
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+}
+
+a,
+a:link,
+a:visited{
+    text-decoration: none;
+    outline: none;
+    border: none;
+    
+}
+ul,
+li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* section, */
+span,
+p{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+.fa, .fas {
+
+    color: white;
+}
+
+.fal{
+    color: white;
+}
+
+body{
+    /* background-image: url(arkaplan.png); */
+    background-image: url(pngwing.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0%;
+    /* width: 100%;
+    height: 100%;
+    max-height: 4200;
+    max-width: 1600; */
+    background-color: #dcdcdc !important;
+    overflow: x;
+    
+}
+
+.header{
+    /* background-color: navy; */
+    background-color: currentColor;
+}
+.header section{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.header .elemanter-row{
+    padding: 20px 5vw;
+}
+.header-menu ul{
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    margin-bottom: 0rem !important;
+}
+.header-profile{
+    border: 1px solid #ffffff80;
+    border-radius: 2em;
+    padding: 3px 10px;
+}
+
+.header-profile a{
+    color: white;
+}
+
+.header-logo{
+    font-size: 20px;
+    font-family: revert;
+    font-weight: lighter;
+}
+
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 5vw;
+    justify-content: space-between;
+}
+
+.main>div{
+    flex-basis: 45%;
+    max-width: 45%;
+    padding: 20px;
+    margin: 10px 0px;
+    color: white;
+    font-size: 20px;
+}
+
+.main i{
+    font-size: 75px;
+}
+.myReports-card{
+    background-color: #5e539f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2em;
+    height: 40vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.reports-card{
+    background-color: #7e3746;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2em;
+    height: 40vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.patients-card{
+    background-color: #338256;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2em;
+    height: 40vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profile-card{
+    background-color: #a14880;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2em;
+    height: 40vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+/* MYREPORTS */
+
+.report-item{
+    background-color: #6b6b6b;
+    border-radius: 2em;
+}
+
+.reportImage{
+    margin-right: 2vw;
+}
+.reportImage img{
+    width: 10vw;
+    height: 20vh;
+}
+
+.report-item{
+    display: flex;
+    align-items: center;
+}
+
+
+/* FOOTER */
+footer{
+    height: 10vh;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    /* border-top-right-radius: 2em; */
+    /* border-bottom-right-radius: 2em; */
+    background-repeat: round;
+    background-size: contain;
+    background: linear-gradient(90deg, #0a1d26 0%, #4c3951 81.92%);
+    /* clip-path: polygon(0% 0%, 80% 0%, 100% 29%, 100% 100%, 20% 100%, 0% 80%); */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 95% 100%, 0% 100%, 0% 75%);
+}
+
+.footer-logo{
+    color: #dcdcdc;
+}
