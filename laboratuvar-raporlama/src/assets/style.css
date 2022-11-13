@@ -370,6 +370,113 @@ body{
     width: 50vw;
     height: 20vh;
 }
+
+/* REGİSTER */
+
+.register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.register-box{
+    display: flex;
+    align-items: center;
+    width: 60vw;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.register-input{
+    width: 35vw;
+    height: 100vh;
+    display: flex;
+    background-repeat: round;
+    background-size: contain;
+    background: linear-gradient(90deg, #0a1d26 0%, #4c3951 81.92%);
+    /* clip-path: polygon(0% 0%, 80% 0%, 100% 29%, 100% 100%, 20% 100%, 0% 80%); */
+    clip-path: polygon(10% 0%, 104% 0%, 100% 0%, 85% 100%, 0% 100%, 0% 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-input input{
+    background-color: transparent;
+    border: 1px solid #5d5d5d;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 20vw;
+}
+
+.record{
+    color: rgb(255 255 255);
+    border: 1px solid #00000000 !important;
+    background-color: #cb05ff70 !important;
+}
+
+.register-login{
+    color: #d2d2d2;
+    margin-bottom: 10px;
+}
+.register-login a{
+    color: #cb05ff;
+}
+
+.register-logo{
+    font-size: 30px;
+    font-family: revert;
+    font-weight: lighter;
+}
+
+
+/* Login */
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.login-box{
+    display: flex;
+    align-items: center;
+    width: 60vw;
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.login-input{
+    width: 35vw;
+    height: 100vh;
+    display: flex;
+    background-repeat: round;
+    background-size: contain;
+    background: linear-gradient(90deg, #0a1d26 0%, #4c3951 81.92%);
+    /* clip-path: polygon(0% 0%, 80% 0%, 100% 29%, 100% 100%, 20% 100%, 0% 80%); */
+    clip-path: polygon(10% 0%, 104% 0%, 100% 0%, 85% 100%, 0% 100%, 0% 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-input input{
+    background-color: transparent;
+    border: 1px solid #5d5d5d;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 20vw;
+}
+
+.login-logo{
+    font-size: 30px;
+    font-family: revert;
+    font-weight: lighter;
+}
+
+
 /* FOOTER */
 footer{
     height: 10vh;
