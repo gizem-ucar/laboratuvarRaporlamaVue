@@ -15,10 +15,10 @@
                                 Report Date: {{report.reportDate}}
                             </div>
                             <div class="patientTC">
-                                Patient TC: 
+                                Patient TC: {{ report.patientTC }}
                             </div>
                             <div class="patientName">
-                                Patient Name:
+                                Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
                             </div>
                         </div>
                     </div>

@@ -34,9 +34,9 @@ export default{
         }
     },
     created(){
-        this.$appAxios.get('/api/patients/getall'
+        this.$appAxios.get('/patients'
             ).then(res => {
-                this.patientList = res?.data.data;
+                this.patientList = res?.data;
                 console.log("patientList patientsPage",this.patientList);
                 console.log(res?.data);
             })

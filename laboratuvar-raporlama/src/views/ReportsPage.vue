@@ -21,9 +21,9 @@ export default{
         }
     },
     created(){
-        this.$appAxios.get('/api/reports/getall'
+        this.$appAxios.get('/reports'
             ).then(res => {
-                this.reportList = res?.data.data;
+                this.reportList = res?.data;
                 console.log("reportList reportsPage",this.reportList);
                 console.log(res?.data);
             })

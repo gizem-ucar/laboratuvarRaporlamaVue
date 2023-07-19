@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store';
 import './assets/font-awesome/css/all.css'
 import {appAxios} from '@/utils/appAxios';
 
@@ -15,5 +16,6 @@ const app = createApp(App)
 app.component('AppHeader', appHeader)
 app.component('AppFooter', appFooter)
 app.use(router)
+app.use(store)
 app.config.globalProperties.$appAxios = appAxios
 app.mount('#app')
