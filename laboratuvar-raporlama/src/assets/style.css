@@ -120,6 +120,21 @@ body{
     font-size: 75px;
 }
 
+.button{
+    color: white;
+    border: 1px solid #ffffff80;
+    border-radius: 2em;
+    padding: 10px 25px;
+    background: none;
+}
+.button-black{
+    color: black;
+    border: 1px solid black;
+    border-radius: 2em;
+    padding: 10px 25px;
+    background: none;
+}
+
 
 
 .reports{
@@ -338,13 +353,33 @@ body{
 
 .profile-report-item , .file-number, .diagnosisMade, .diagnosisDetail, .reportDate, .patientTC, .patientName, .patientFirstName, .patientLastName{
     color: white;
-    font-size: 25px;
+    font-size: 18px;
 }
+
+.position-right{
+    margin: 10px 20px;
+}
+
+
+
+
+
+
 .report-information{
     height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* .report-information div{
+    border-bottom: 1px solid;
+} */
+
+.report-information input{
+    background: none;
+    outline: none;
+    width: 50vw;
 }
 
 

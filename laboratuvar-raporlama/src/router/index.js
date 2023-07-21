@@ -50,6 +50,11 @@ const routes=[
         name: "ReportDetailPage",
         path: "/reportdetail",
         component: () => import("@/views/ReportDetailPage")
+    },
+    {
+        name: "ReportUpdate",
+        path: "/reportupdate",
+        component: () => import("@/views/ReportUpdate")
     }
     
 ];

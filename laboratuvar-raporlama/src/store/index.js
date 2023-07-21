@@ -14,6 +14,7 @@ export default createStore({
         userRole: null,
         isLoading: false,
         tokenKey: null,
+        report:null,
         // place: null,
         // placeInformation: null,
         errorMessage: "",
@@ -26,9 +27,9 @@ export default createStore({
         setTokenKey(state, value) {
             state.tokenKey = value;
         },
-        // setPlace(state, value) {
-        //     state.place = value;
-        // },
+        setReport(state, value) {
+            state.report = value;
+        },
         // setPlaceInformation(state, value) {
         //     state.place = value;
         // },
@@ -138,6 +139,7 @@ export default createStore({
 
                     commit("setUserRole", data.roleName); // Kullanıcının rolünü güncelle
                     commit("setUser", userId); // Kullanıcı bilgilerini güncelle
+                    commit("setTokenKey", data.message); // Kullanıcı bilgilerini güncelle
 
                     if (data.roleName === "ADMIN") {
                         // Admin rolüne sahip olduğunda yapılacak işlemler

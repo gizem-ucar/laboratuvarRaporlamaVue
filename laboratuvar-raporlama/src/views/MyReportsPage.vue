@@ -3,7 +3,7 @@
 <AppHeader />
 
 <div class="myReports" v-for="report in reportList" :key="report.reportId">
-        <router-link :to="{ name: 'ReportDetailPage'}" >
+        <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
             <div class="report-item">
                 <div class="reportImage"><img :src="report.reportImage" alt=""></div>
                 <div class="report-information">
@@ -45,7 +45,7 @@ export default{
     },
     methods: {
       fetchReports(userId) {
-        this.$appAxios.get(`http://localhost:8080/reports?userId=${userId}`)
+        this.$appAxios.get(`/reports?userId=${userId}`)
           .then(res => {
             this.reportList = res?.data;
                 console.log("reportList myReportsPage",this.reportList);
@@ -55,7 +55,21 @@ export default{
             // İstek hatalı olduğunda yapılacak işlemler
             console.error(error);
           });
-      }
+      },
+      onPressedReportDetail(report_id) {
+            const token = this.$store.state.tokenKey;
+            this.$appAxios.get(`reports/${report_id}`, {
+              headers: {
+                'Authorization': `${token}`,
+              }
+            }).then(res => {
+                this.reportDetail = res.data;
+                this.$store.commit("setReport", this.reportDetail)
+                console.log(this.reportDetail);
+                // console.log(resProductDetail);
+                this.$router.push({name : "ReportDetailPage"});
+            })
+        }
     },
     computed: {
         ...mapState({
