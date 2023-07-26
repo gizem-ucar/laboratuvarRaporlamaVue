@@ -3,7 +3,18 @@
 
 <div class="profile">
     <div class="position-right">
-        <button class="button-black">Düzenle</button>
+        
+        <button class="button-black">
+            <router-link :to="{ name: 'ProfileUpdate'}" >
+                Düzenle
+            </router-link>
+        </button>
+        <button class="button-black">
+            <router-link :to="{ name: 'PatientAdd'}" >
+                Yeni Hasta Ekle
+            </router-link>
+        </button>
+        
     </div>
     <div class="profile-information-button">
         <div class="profile-image"><img src="@/assets/images/pngdeneme.png" alt=""></div>

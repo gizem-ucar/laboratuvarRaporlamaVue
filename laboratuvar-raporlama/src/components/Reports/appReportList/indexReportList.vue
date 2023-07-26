@@ -5,19 +5,19 @@
         <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
         <div class="reportImage"><img :src="report.reportImage" alt=""></div>
         <div class="report-information">
-            <div class="file-number">
+            <div class="form-text">
                 File number: {{report.fileNo}}
             </div>
-            <div class="diagnosisMade">
+            <div class="form-text">
                 Diagnosis Made: {{report.diagnosisMade}}
             </div>
-            <div class="reportDate">
+            <div class="form-text">
                 Report Date: {{report.reportDate}}
             </div>
-            <div class="patientTC">
+            <div class="form-text">
                 Patient TC: {{ report.patientTC }}
             </div>
-            <div class="patientName">
+            <div class="form-text">
                 Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
             </div>
         </div>

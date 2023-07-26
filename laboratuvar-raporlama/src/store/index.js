@@ -15,7 +15,7 @@ export default createStore({
         isLoading: false,
         tokenKey: null,
         report:null,
-        // place: null,
+        patient: null,
         // placeInformation: null,
         errorMessage: "",
         // count: 0
@@ -30,9 +30,9 @@ export default createStore({
         setReport(state, value) {
             state.report = value;
         },
-        // setPlaceInformation(state, value) {
-        //     state.place = value;
-        // },
+        setPatient(state, value) {
+            state.patient = value;
+        },
         setUser(state, user){
             state.user = user;
             // console.log("setUser mutations",user);

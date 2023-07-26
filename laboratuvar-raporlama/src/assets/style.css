@@ -351,7 +351,7 @@ body{
     color: #13212c;
 }
 
-.profile-report-item , .file-number, .diagnosisMade, .diagnosisDetail, .reportDate, .patientTC, .patientName, .patientFirstName, .patientLastName{
+.profile-report-item , .form-text{
     color: white;
     font-size: 18px;
 }
