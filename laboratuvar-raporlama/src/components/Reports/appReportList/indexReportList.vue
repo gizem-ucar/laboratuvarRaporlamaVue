@@ -3,7 +3,7 @@
 <div class="reports">
     <div class="report-item" v-for="report in reports" :key="report.reportId">
         <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
-        <div class="reportImage"><img :src="report.reportImage" alt=""></div>
+        <div class="reportImage"><img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt=""></div>
         <div class="report-information">
             <div class="form-text">
                 File number: {{report.fileNo}}
@@ -32,6 +32,7 @@ export default{
     data(){
         return{
             report: null,
+            reportImageUrlMap: {}
         }
     },
     props: {
@@ -41,8 +42,14 @@ export default{
             default: () => []
         }
     },
-    mounted(){
-        console.log("reports", this.reports)
+    created() {
+        // Önce localStorage'dan verileri yükle
+        const storedData = localStorage.getItem('reportImageData');
+        if (storedData) {
+          this.reportImageUrlMap = JSON.parse(storedData);
+        } else {
+          this.fetchReportImages();
+        }
     },
     methods:{
         onPressedReportDetail(report_id) {
@@ -52,13 +59,35 @@ export default{
                 'Authorization': `${token}`,
               }
             }).then(res => {
-                this.reportDetail = res.data;
-                this.$store.commit("setReport", this.reportDetail)
-                console.log(this.reportDetail);
+                const selectedReport = res.data;
+                this.$store.commit("setReport", selectedReport)
+                console.log("selectedReport",selectedReport);
                 // console.log(resProductDetail);
                 this.$router.push({name : "ReportDetailPage"});
             })
-        }
+        },
+        async fetchReportImages() {
+            try {
+              const token = this.$store.state.tokenKey;
+            
+              // Tüm raporları dolaşıp, reportId'ye göre base64 kodlu veriyi al ve map'e ekle
+              for (const report of this.reports) {
+                const reportId = report.reportId;
+                const response = await this.$appAxios.get(`/images/${reportId}`, {
+                  headers: {
+                    Authorization: `${token}`
+                  },
+                  responseType: 'text'
+                });
+            
+                this.reportImageUrlMap[reportId] = `data:image/jpeg;base64, ${response.data}`;
+              }
+                // localStorage'a verileri kaydet
+                localStorage.setItem('reportImageData', JSON.stringify(this.reportImageUrlMap));
+            } catch (error) {
+              console.error("Error while fetching image URL:", error);
+            }
+        },
     }
 }
 </script>

@@ -5,7 +5,9 @@
 <div class="myReports" v-for="report in reportList" :key="report.reportId">
         <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
             <div class="report-item">
-                <div class="reportImage"><img :src="report.reportImage" alt=""></div>
+                <div class="reportImage">
+                    <img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt="">
+                </div>
                 <div class="report-information">
                     <div class="form-text">
                         File number: {{report.fileNo}}
@@ -36,12 +38,20 @@ import { mapState } from 'vuex';
 export default{
     data(){
         return{
-            reportList : []
+            reportList : [],
+            reportImageUrlMap: {}
         }
     },
     created(){
         const userId = this.userId;
         this.fetchReports(userId);
+        // Önce localStorage'dan verileri yükle
+        const storedData = localStorage.getItem('reportImageData');
+        if (storedData) {
+          this.reportImageUrlMap = JSON.parse(storedData);
+        } else {
+          this.fetchReportImages();
+        }
     },
     methods: {
       fetchReports(userId) {
@@ -69,6 +79,29 @@ export default{
                 // console.log(resProductDetail);
                 this.$router.push({name : "ReportDetailPage"});
             })
+        },
+        async fetchReportImages() {
+          try {
+            const token = this.$store.state.tokenKey;
+        
+            // Tüm raporları dolaşıp, reportId'ye göre base64 kodlu veriyi al ve map'e ekle
+            for (const report of this.reportList) {
+              const reportId = report.reportId;
+              const response = await this.$appAxios.get(`/images/${reportId}`, {
+                headers: {
+                  Authorization: `${token}`
+                },
+                responseType: 'text'
+              });
+          
+              this.reportImageMap[reportId] = `data:image/jpeg;base64, ${response.data}`;
+            }
+        
+            // localStorage'a verileri kaydet
+            localStorage.setItem('reportImageMap', JSON.stringify(this.reportImageMap));
+          } catch (error) {
+            console.error("Error while fetching image URL:", error);
+          }
         }
     },
     computed: {

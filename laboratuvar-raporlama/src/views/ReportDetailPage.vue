@@ -3,7 +3,7 @@
     <div class="report-detail">
         <div class="report-detail-container">
             <div class="report-detail-row">
-                <div><img :src="this.reportDetail.reportImage" alt=""></div>
+                <div><img v-if="reportImageUrl" :src="reportImageUrl" alt=""></div>
                 <div class="report-information">
                     <div class="form-text">
                         File number: {{this.reportDetail.fileNo}}
@@ -44,8 +44,61 @@ import { mapState } from 'vuex';
 export default{
     data(){
         return{
-
+            reportImageUrl: ''
         };
+    },
+    created() {
+    //   this.fetchReportImage();
+    },
+    watch: {
+    reportDetail: {
+      immediate: true,
+      handler() {
+        // Seçili rapor değiştiğinde veya detay sayfası oluşturulduğunda
+        // raporun resmini güncelle
+        this.fetchReportImage();
+      },
+    },
+    },
+    methods: {
+        async getReportImageUrl(reportId) {
+            try {
+                const token = this.$store.state.tokenKey;
+                this.$appAxios.get(`/images/${reportId}`, {
+                headers: {
+                    'Authorization': `${token}`,
+                }
+                }).then(res => {
+                    this.reportImgResource = res;
+                    // const data = res.data.json();
+                    console.log(this.reportImgResource);
+                    // return data.imageUrl;
+                })
+            }catch (error) {
+                console.error("Error while fetching image URL:", error);
+                return "";
+            }
+        },
+        async fetchReportImage() {
+          try {
+            const token = this.$store.state.tokenKey;
+            const reportId = this.reportDetail.reportId; // Örnek olarak reportId'yi buradan alıyorum
+        
+            // Sunucudan base64 kodlu veriyi al
+            const response = await this.$appAxios.get(`/images/${reportId}`, {
+              headers: {
+                Authorization: `${token}`
+              },
+              responseType: 'text' // responseType'i text olarak belirtiyoruz
+            });
+        
+            // response.data, base64 kodlu veriyi içerir, bu veriyi reportImageUrl'e atıyoruz
+            this.reportImageUrl = `data:image/jpeg;base64, ${response.data}`;
+          } catch (error) {
+            console.error("Error while fetching image URL:", error);
+            this.reportImageUrl = ''; // Hata durumunda reportImageUrl'i boş bırakabilirsiniz
+          }
+        },
     },
     computed: {
         ...mapState({
