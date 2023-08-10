@@ -2,9 +2,10 @@
 
 <AppHeader />
 
-<div class="myReports" v-for="report in reportList" :key="report.reportId">
-        <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
-            <div class="report-item">
+<div class="myReports">
+        
+            <div v-for="report in reportList" :key="report.reportId">
+              <router-link class="report-item" :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
                 <div class="reportImage">
                     <img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt="">
                 </div>
@@ -25,8 +26,8 @@
                         Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
                     </div>
                 </div>
+              </router-link>
             </div>
-        </router-link>
     </div>
 
     <AppFooter/>

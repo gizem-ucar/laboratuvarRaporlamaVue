@@ -3,7 +3,7 @@
         <div class="report-detail">
             <div class="report-detail-container">
                 <div class="report-detail-row">
-                    <div><img :src="this.reportDetail.reportImage" alt=""></div>
+                    <div><img v-if="reportImageUrl" :src="reportImageUrl" alt=""></div>
                     <div class="report-information">
                         <div class="form-text">
                             Diagnosis Made:                             
@@ -37,8 +37,12 @@ export default{
                 diagnosisMade:null,
                 diagnosisDetail:null,
                 reportImage:null
-            }
+            },
+            reportImageUrl: ''
         };
+    },
+    created() {
+      this.fetchReportImage();
     },
     methods:{
         updateReport(reportId){
@@ -53,7 +57,27 @@ export default{
                     // console.log(resProductDetail);
                     this.$router.push({name : "ReportsPage"});
                 })
-        }
+        },
+        async fetchReportImage() {
+          try {
+            const token = this.$store.state.tokenKey;
+            const reportId = this.reportDetail.reportId; // Örnek olarak reportId'yi buradan alıyorum
+        
+            // Sunucudan base64 kodlu veriyi al
+            const response = await this.$appAxios.get(`/images/${reportId}`, {
+              headers: {
+                Authorization: `${token}`
+              },
+              responseType: 'text' // responseType'i text olarak belirtiyoruz
+            });
+        
+            // response.data, base64 kodlu veriyi içerir, bu veriyi reportImageUrl'e atıyoruz
+            this.reportImageUrl = `data:image/jpeg;base64, ${response.data}`;
+          } catch (error) {
+            console.error("Error while fetching image URL:", error);
+            this.reportImageUrl = ''; // Hata durumunda reportImageUrl'i boş bırakabilirsiniz
+          }
+        },
     },
     computed: {
         ...mapState({

@@ -1,6 +1,8 @@
 <template>
 
 <div class="reports">
+    
+
     <div class="report-item" v-for="report in reports" :key="report.reportId">
         <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
         <div class="reportImage"><img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt=""></div>
@@ -28,11 +30,12 @@
 </template>
 
 <script>
+
 export default{
     data(){
         return{
             report: null,
-            reportImageUrlMap: {}
+            reportImageUrlMap: {},
         }
     },
     props: {

@@ -61,24 +61,6 @@ export default{
     },
     },
     methods: {
-        async getReportImageUrl(reportId) {
-            try {
-                const token = this.$store.state.tokenKey;
-                this.$appAxios.get(`/images/${reportId}`, {
-                headers: {
-                    'Authorization': `${token}`,
-                }
-                }).then(res => {
-                    this.reportImgResource = res;
-                    // const data = res.data.json();
-                    console.log(this.reportImgResource);
-                    // return data.imageUrl;
-                })
-            }catch (error) {
-                console.error("Error while fetching image URL:", error);
-                return "";
-            }
-        },
         async fetchReportImage() {
           try {
             const token = this.$store.state.tokenKey;
@@ -94,6 +76,8 @@ export default{
         
             // response.data, base64 kodlu veriyi içerir, bu veriyi reportImageUrl'e atıyoruz
             this.reportImageUrl = `data:image/jpeg;base64, ${response.data}`;
+            console.log('report detail response', response)
+            console.log('this.reportImageUrl', this.reportImageUrl)
           } catch (error) {
             console.error("Error while fetching image URL:", error);
             this.reportImageUrl = ''; // Hata durumunda reportImageUrl'i boş bırakabilirsiniz

@@ -28,8 +28,9 @@
         </div>
     </div>
     <div class="profile-reports">
-        <div class="profile-report-item" v-for="report in reportList" :key="report.reportId">
-            <div class="reportImage"><img src="@/assets/images/pngdeneme.png" alt=""></div>
+        <div v-for="report in reportList" :key="report.reportId">
+            <router-link class="profile-report-item" :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
+            <div class="reportImage"><img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt=""></div>
             <div class="report-information">
                 <div class="file-number">
                     File number: {{report.fileNo}}
@@ -47,6 +48,7 @@
                     Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
                 </div>
             </div>
+            </router-link>
         </div>
     </div>
 
@@ -62,15 +64,37 @@ export default{
     data(){
         return{
             user:null,
-            reportList : []
+            reportList : [],
+            reportImageUrlMap: {}
         };
     },
     created(){
         const userId = this.userId;
         this.fetchUser(userId);
         this.fetchReports(userId);
+        // Önce localStorage'dan verileri yükle
+        const storedData = localStorage.getItem('reportImageData');
+        if (storedData) {
+          this.reportImageUrlMap = JSON.parse(storedData);
+        } else {
+          this.fetchReportImages();
+        }
     },
     methods: {
+        onPressedReportDetail(report_id) {
+            const token = this.$store.state.tokenKey;
+            this.$appAxios.get(`reports/${report_id}`, {
+              headers: {
+                'Authorization': `${token}`,
+              }
+            }).then(res => {
+                const selectedReport = res.data;
+                this.$store.commit("setReport", selectedReport)
+                console.log("selectedReport",selectedReport);
+                // console.log(resProductDetail);
+                this.$router.push({name : "ReportDetailPage"});
+            })
+        },
         fetchUser(userId) {
         const token = this.$store.state.tokenKey;
         this.$appAxios.get(`/users/${userId}`, {
@@ -99,7 +123,29 @@ export default{
             // İstek hatalı olduğunda yapılacak işlemler
             console.error(error);
           });
-      }
+      },
+      async fetchReportImages() {
+            try {
+              const token = this.$store.state.tokenKey;
+            
+              // Tüm raporları dolaşıp, reportId'ye göre base64 kodlu veriyi al ve map'e ekle
+              for (const report of this.reports) {
+                const reportId = report.reportId;
+                const response = await this.$appAxios.get(`/images/${reportId}`, {
+                  headers: {
+                    Authorization: `${token}`
+                  },
+                  responseType: 'text'
+                });
+            
+                this.reportImageUrlMap[reportId] = `data:image/jpeg;base64, ${response.data}`;
+              }
+                // localStorage'a verileri kaydet
+                localStorage.setItem('reportImageData', JSON.stringify(this.reportImageUrlMap));
+            } catch (error) {
+              console.error("Error while fetching image URL:", error);
+            }
+        },
     },
     computed: {
         ...mapState({
