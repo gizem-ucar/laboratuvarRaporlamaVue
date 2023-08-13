@@ -110,6 +110,7 @@ body{
     flex-wrap: wrap;
     padding: 20px 5vw;
     justify-content: space-between;
+    min-height: 75vh;
 }
 
 .main>a{
@@ -131,6 +132,7 @@ body{
     border-radius: 2em;
     padding: 10px 25px;
     background: none;
+    cursor: pointer;
 }
 .button-black{
     color: black;
@@ -144,7 +146,8 @@ body{
 
 .reports{
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    /* flex-wrap: wrap; */
     padding: 20px 5vw;
     justify-content: space-between;
 }
@@ -172,7 +175,8 @@ body{
 
 .myReports{
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
+    /* flex-wrap: wrap; */
     padding: 20px 5vw;
     justify-content: space-between;
 }
@@ -192,7 +196,7 @@ body{
 
 .patients{
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     padding: 20px 5vw;
     justify-content: space-between;
 }
@@ -276,7 +280,10 @@ body{
     background-color: slategrey;
     border-radius: 2em;
     padding: 20px;
-    margin: 10px 0px;
+    margin: 10px 1px;
+    flex-basis: 25%;
+    max-width: 24%;
+    max-height: 25vh;
 }
 
 .reportImage{
@@ -299,6 +306,9 @@ body{
     padding: 20px;
     margin-bottom: 20px;
     justify-content: center;
+    flex-basis: 25%;
+    max-width: 24%;
+    max-height: 25vh;
 }
 
 .patientImage{
@@ -460,6 +470,7 @@ body{
     margin-bottom: 20px;
     padding: 5px;
     width: 20vw;
+    color: white;
 }
 
 .record{
@@ -532,6 +543,7 @@ body{
     margin-bottom: 20px;
     padding: 5px;
     width: 20vw;
+    color: white;
 }
 
 .login-logo{

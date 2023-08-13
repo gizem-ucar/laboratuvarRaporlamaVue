@@ -7,11 +7,10 @@
         <button class="button-black">
                 Düzenle
         </button>
+         <router-link :to="{ name: 'ReportAdd'}" >
         <button class="button-black">
-            <router-link :to="{ name: 'ReportAdd'}" >
                 Yeni Rapor Ekle
-            </router-link>
-        </button>
+        </button></router-link>
     </div>
     <div class="profile-information-button">
         <div class="profile-information">

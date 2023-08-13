@@ -2,7 +2,7 @@
 
     <AppHeader />
     
-    <div class="patients">
+    <div class="patients main">
         <div class="patient-item" v-for="patient in patientList" :key="patient.patientTC">
             <router-link :to="{ name: 'PatientProfile'}"  @click.prevent="onPressedPatientDetail(patient.patientId)">
             <!-- <div class="patientImage"><img src="@/assets/images/pngdeneme.png" alt=""></div> -->

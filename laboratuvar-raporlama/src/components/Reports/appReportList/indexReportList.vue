@@ -1,6 +1,6 @@
 <template>
 
-<div class="reports">
+<div class="reports main">
     
 
     <div class="report-item" v-for="report in reports" :key="report.reportId">

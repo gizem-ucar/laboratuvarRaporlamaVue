@@ -25,12 +25,11 @@
                     </div>
                 </div>
                 <div>
-                    <button class="button">Sil</button>
-                    <button class="button">
-                        <router-link :to="{ name: 'ReportUpdate'}" >
+                    <button class="button" @click="deleteReport(this.reportDetail.reportId)">Sil</button>
+                    <router-link :to="{ name: 'ReportUpdate'}" >
+                        <button class="button">
                             Düzenle
-                        </router-link>
-                    </button>
+                        </button></router-link>
                 </div>
             </div>
         </div>
@@ -83,6 +82,17 @@ export default{
             this.reportImageUrl = ''; // Hata durumunda reportImageUrl'i boş bırakabilirsiniz
           }
         },
+        deleteReport(reportId){
+            const token = this.$store.state.tokenKey;
+            this.$appAxios.delete(`reports/${reportId}`, {
+              headers: {
+                'Authorization': `${token}`
+              }
+            }).then(res => {
+                    console.log("Report delete", res.data);
+                    this.$router.push({name : "ReportsPage"});
+                })
+        }
     },
     computed: {
         ...mapState({

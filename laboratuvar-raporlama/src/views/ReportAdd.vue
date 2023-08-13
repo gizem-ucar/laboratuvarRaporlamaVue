@@ -69,16 +69,6 @@ export default{
              this.reportAdd.userId= this.userId;
              this.reportAdd.patientId= this.patientDetail.patientId;
 
-                // FormData nesnesini oluşturun
-            //const formData = new FormData();
-            //formData.append('newReportRequest', JSON.stringify(this.reportAdd)); // JSON verisini ekle
-            //formData.append('imageFile', this.reportAdd.reportImageFile); // Dosyayı ekle
-
-            // // FormData nesnesini oluşturun 
-            // const formData = new FormData(); 
-            // formData.append('newReportRequest', JSON.stringify(this.reportAdd)); // JSON verisini ekle 
-            // formData.append('reportImageFile', this.reportAdd.reportImageFile); // Dosyayı ekle
-
             // FormData nesnesini oluşturun 
             const formData = new FormData();
             formData.append('fileNo', this.reportAdd.fileNo);

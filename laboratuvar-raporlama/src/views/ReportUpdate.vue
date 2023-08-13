@@ -15,7 +15,8 @@
                         </div>
                         <div class="form-text">
                             Rapor fotoğrafı: 
-                            <input type="text" v-model="reportUpdate.reportImage">
+                            <!-- <input type="text" v-model="reportUpdate.reportImage"> -->
+                            <input class="form-control" type="file" id="reportImageFile" name="reportImageFile" @change="handleFileChange">
                         </div>
                     </div>
                     <div>
@@ -36,7 +37,7 @@ export default{
             reportUpdate:{
                 diagnosisMade:null,
                 diagnosisDetail:null,
-                reportImage:null
+                reportImageFile:null
             },
             reportImageUrl: ''
         };
@@ -45,11 +46,27 @@ export default{
       this.fetchReportImage();
     },
     methods:{
+        handleFileChange(event) {
+            this.reportUpdate.reportImageFile = event.target.files[0];
+            console.log('this.reportUpdate.reportImageFile', this.reporreportUpdatetAdd.reportImageFile)
+        },
         updateReport(reportId){
+          const formData = new FormData();
+            formData.append('diagnosisMade', this.reportUpdate.diagnosisMade);
+            formData.append('diagnosisDetail', this.reportUpdate.diagnosisDetail);
+            formData.append('file', this.reportUpdate.reportImageFile);
+            
+
+            for (const entry of formData.entries()) {
+              console.log("FormData update",entry);
+            }
+  
+
             const token = this.$store.state.tokenKey;
-            this.$appAxios.put(`reports/${reportId}`, this.reportUpdate, {
+            this.$appAxios.put(`reports/${reportId}`, formData, {
               headers: {
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data'
               }
             }).then(res => {
                     console.log('this.reportUpdate nedir', this.reportUpdate)
@@ -57,6 +74,10 @@ export default{
                     // console.log(resProductDetail);
                     this.$router.push({name : "ReportsPage"});
                 })
+                .catch(error => {
+                  // Hata durumunu yönet
+                  console.error('Bir hata oluştu:', error);
+                });
         },
         async fetchReportImage() {
           try {
