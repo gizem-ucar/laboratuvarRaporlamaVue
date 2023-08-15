@@ -1,25 +1,31 @@
 <template>
 
     <AppHeader />
-    
-    <div class="patients main">
-        <div class="patient-item" v-for="patient in patientList" :key="patient.patientTC">
-            <router-link :to="{ name: 'PatientProfile'}"  @click.prevent="onPressedPatientDetail(patient.patientId)">
-            <!-- <div class="patientImage"><img src="@/assets/images/pngdeneme.png" alt=""></div> -->
-            <div class="patient-information">
-                <div class="form-text">
-                    Patient TC: {{patient.patientTC}}
-                </div>
-                <div class="form-text">
-                    Patient Name: {{patient.patientFirstName}}
-                </div>
-                <div class="form-text">
-                    Patient Surname: {{patient.patientLastName}}
+
+    <div class="elemanter-container">
+            <div class="elemanter-row">
+                <div class="patients">
+                    <div class="patient-item" v-for="patient in patientList" :key="patient.patientTC">
+                        <router-link :to="{ name: 'PatientProfile'}"  @click.prevent="onPressedPatientDetail(patient.patientId)">
+                        <!-- <div class="patientImage"><img src="@/assets/images/pngdeneme.png" alt=""></div> -->
+                        <div class="patient-information">
+                            <div class="form-text">
+                                Patient TC: {{patient.patientTC}}
+                            </div>
+                            <div class="form-text">
+                                Patient Name: {{patient.patientFirstName}}
+                            </div>
+                            <div class="form-text">
+                                Patient Surname: {{patient.patientLastName}}
+                            </div>
+                        </div>
+                        </router-link>
+                    </div>
                 </div>
             </div>
-            </router-link>
-        </div>
     </div>
+    
+    
     
         <AppFooter/>
     

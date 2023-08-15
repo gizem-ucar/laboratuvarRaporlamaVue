@@ -3,7 +3,9 @@
         <div class="report-detail">
             <div class="report-detail-container">
                 <div class="report-detail-row">
-                    <div><img v-if="reportImageUrl" :src="reportImageUrl" alt=""></div>
+                    <div v-if="imageUrl"><img v-show="imageUrl" :src="imageUrl"/></div>
+                    <div v-else-if="reportImageUrl"><img  :src="reportImageUrl" alt=""></div>
+                    <div v-else><img src="../assets/images/reportimage.png" alt=""></div>
                     <div class="report-information">
                         <div class="form-text">
                             Diagnosis Made:                             
@@ -39,7 +41,8 @@ export default{
                 diagnosisDetail:null,
                 reportImageFile:null
             },
-            reportImageUrl: ''
+            reportImageUrl: '',
+            imageUrl: null
         };
     },
     created() {
@@ -48,7 +51,12 @@ export default{
     methods:{
         handleFileChange(event) {
             this.reportUpdate.reportImageFile = event.target.files[0];
-            console.log('this.reportUpdate.reportImageFile', this.reportUpdate.reportImageFile)
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(this.reportUpdate.reportImageFile);
+
+            fileReader.addEventListener("load", () => {
+                this.imageUrl = fileReader.result;
+            });
         },
         updateReport(reportId){
           const formData = new FormData();

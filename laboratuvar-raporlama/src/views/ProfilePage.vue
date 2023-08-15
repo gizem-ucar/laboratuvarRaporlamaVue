@@ -16,7 +16,8 @@
         </router-link>
     </div>
     <div class="profile-information-button">
-        <div class="profile-image"><img v-if="userImageUrl" :src="userImageUrl" alt=""></div>
+        <div class="profile-image" v-if="userImageUrl"><img :src="userImageUrl" alt=""></div>
+        <div class="profile-image" v-else ><img src="../assets/images/profileAvatar.png" alt=""></div>
         <div class="profile-information">
             <ul>
                 <li>User Name: {{ user.userFirstName }}</li>

@@ -22,7 +22,9 @@
             </ul>
         </div>
     </div>
-
+    <button class="button-black" @click="deletePatient(this.patientDetail.patientId)">
+            Sil
+    </button>
     <div class="profile-reports">
         <div v-for="report in reportList" :key="report.reportId">
             <router-link class="profile-report-item" :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
@@ -153,6 +155,17 @@ export default{
               console.error("Error while fetching image URL:", error);
             }
         },
+        deletePatient(patientId){
+            const token = this.$store.state.tokenKey;
+            this.$appAxios.delete(`patients/${patientId}`, {
+              headers: {
+                'Authorization': `${token}`
+              }
+            }).then(res => {
+                    console.log("Patient delete", res.data);
+                    this.$router.push({name : "PatientsPage"});
+                })
+        }
   }
 }
 </script>

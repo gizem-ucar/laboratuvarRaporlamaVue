@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="button" @click="updatePatient(this.patientDetail.patientId)">Ekle</button>
+                        <button class="button" @click="updatePatient(this.patientDetail.patientId)">Düzenle</button>
                     </div>
                 </div>
             </div>

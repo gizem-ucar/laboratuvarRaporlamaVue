@@ -2,33 +2,36 @@
 
 <AppHeader />
 
-<div class="myReports main">
-        
-            <div  class="report-item" v-for="report in reportList" :key="report.reportId">
-              <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
-                <div class="reportImage">
-                    <img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt="">
+<div class="elemanter-container">
+            <div class="elemanter-row">
+              <div class="myReports">
+                <div  class="report-item" v-for="report in reportList" :key="report.reportId">
+                  <router-link :to="{ name: 'ReportDetailPage'}" @click.prevent="onPressedReportDetail(report.reportId)">
+                    <div class="reportImage">
+                        <img v-if="reportImageUrlMap[report.reportId]" :src="reportImageUrlMap[report.reportId]" alt="">
+                    </div>
+                    <div class="report-information">
+                        <div class="form-text">
+                            File number: {{report.fileNo}}
+                        </div>
+                        <div class="form-text">
+                            Diagnosis Made: {{report.diagnosisMade}}
+                        </div>
+                        <div class="form-text">
+                            Report Date: {{report.reportDate}}
+                        </div>
+                        <div class="form-text">
+                            Patient TC: {{ report.patientTC }}
+                        </div>
+                        <div class="form-text">
+                            Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
+                        </div>
+                    </div>
+                  </router-link>
                 </div>
-                <div class="report-information">
-                    <div class="form-text">
-                        File number: {{report.fileNo}}
-                    </div>
-                    <div class="form-text">
-                        Diagnosis Made: {{report.diagnosisMade}}
-                    </div>
-                    <div class="form-text">
-                        Report Date: {{report.reportDate}}
-                    </div>
-                    <div class="form-text">
-                        Patient TC: {{ report.patientTC }}
-                    </div>
-                    <div class="form-text">
-                        Patient Name: {{ report.patientFirstName }} {{ report.patientLastName }}
-                    </div>
-                </div>
-              </router-link>
+              </div>
             </div>
-    </div>
+</div>
 
     <AppFooter/>
 
