@@ -16,7 +16,7 @@
                 <input v-model="userData.userLastName" type="text" name="" id="" placeholder="Soyisim">
                 <input v-model="userData.userTC" type="text" name="" id="" placeholder="TC kimlik">
                 <input v-model="userData.email" type="email" name="" id="" placeholder="Email">
-                <input v-model="roleName" type="text" name="" id="" placeholder="Rol">
+                <input v-model="userData.roleId" type="text" name="" id="" placeholder="Rol">
                 <input v-model="userData.userName" type="text" name="" id="" placeholder="User Name">
                 <input v-model="userData.password" type="password" name="" id="" placeholder="Password">
                 
@@ -26,7 +26,7 @@
                 </router-link>
                 </div>
 
-                <input type="submit" name="" id="" value="Kayıt Ol" class="record">
+                <input @click="onRegister" type="submit" name="" id="" value="Kayıt Ol" class="record">
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@ export default{
         
     },
     methods : {
-        onregister(){
+        onRegister(){
             this.register(this.userData)
         },
         ...mapActions({

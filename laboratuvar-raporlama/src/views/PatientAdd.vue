@@ -4,7 +4,6 @@
     <div class="report-detail">
             <div class="report-detail-container">
                 <div class="report-detail-row">
-                    <div><img src="this.reportDetail.reportImage" alt=""></div>
                     <div class="report-information">
                         <div class="form-text">
                             Patient TC:                             

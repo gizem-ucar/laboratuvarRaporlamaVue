@@ -48,7 +48,7 @@ export default{
     methods:{
         handleFileChange(event) {
             this.reportUpdate.reportImageFile = event.target.files[0];
-            console.log('this.reportUpdate.reportImageFile', this.reporreportUpdatetAdd.reportImageFile)
+            console.log('this.reportUpdate.reportImageFile', this.reportUpdate.reportImageFile)
         },
         updateReport(reportId){
           const formData = new FormData();

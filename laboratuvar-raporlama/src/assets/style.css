@@ -389,6 +389,37 @@ body{
 
 
 
+/* PROFİLE UPDATE */
+
+
+.profile-update .profile-information-button{
+    height: 55vh;
+}
+
+.profile-update .profile-image {
+    position: relative; 
+    left: 0vw;
+}
+
+.profile-update .profile-information {
+    margin-left: 0vw; 
+}
+
+.profile-update ul {
+    min-height: 41vh;
+}
+.profile-update li {
+    font-size: 17px;
+    color: white;
+}
+
+.profile-update input{
+    background: none;
+    outline: none;
+    width: 100%;
+    border-radius: 0.5em;
+    border: 1px solid #c3c3c3;
+}
 
 
 
@@ -403,10 +434,12 @@ body{
     border-bottom: 1px solid;
 } */
 
-.report-information input{
+.report-information .form-text input{
     background: none;
     outline: none;
     width: 50vw;
+    border-radius: 0.5em;
+    border: 1px solid #c3c3c3;
 }
 
 
@@ -424,13 +457,13 @@ body{
     margin: 5vw;
     padding: 2vw;
     border-radius: 2em;
-    height: 70vh;
+    height: 75vh;
     background-color: slategrey;
 }
 
 .report-detail-row .report-information{
     width: 50vw;
-    height: 20vh;
+    height: 25vh;
 }
 
 /* REGİSTER */

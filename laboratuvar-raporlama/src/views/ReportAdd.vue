@@ -4,7 +4,8 @@
     <div class="report-detail">
             <div class="report-detail-container">
                 <div class="report-detail-row">
-                    <div><img src="this.reportDetail.reportImage" alt=""></div>
+                    <div v-if="imageUrl"><img v-show="imageUrl" :src="imageUrl"/></div>
+                    <div v-else><img src="../assets/images/reportimage.png" alt=""></div>
                     <div class="report-information">
                         <div class="form-text">
                             File No:                             
@@ -52,7 +53,8 @@ export default{
                 reportDate: null,
                 reportImageFile: null,
                 patientId: null
-            }
+            },
+            imageUrl: null,
         };
     },
     created(){
@@ -63,7 +65,12 @@ export default{
     methods:{
         handleFileChange(event) {
             this.reportAdd.reportImageFile = event.target.files[0];
-            console.log('this.reportAdd.reportImageFile', this.reportAdd.reportImageFile)
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(this.reportAdd.reportImageFile);
+
+            fileReader.addEventListener("load", () => {
+                this.imageUrl = fileReader.result;
+            });
         },
         addReport(){
              this.reportAdd.userId= this.userId;

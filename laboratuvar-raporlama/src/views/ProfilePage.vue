@@ -16,7 +16,7 @@
         </router-link>
     </div>
     <div class="profile-information-button">
-        <div class="profile-image"><img src="@/assets/images/pngdeneme.png" alt=""></div>
+        <div class="profile-image"><img v-if="userImageUrl" :src="userImageUrl" alt=""></div>
         <div class="profile-information">
             <ul>
                 <li>User Name: {{ user.userFirstName }}</li>
@@ -64,7 +64,8 @@ export default{
         return{
             user:null,
             reportList : [],
-            reportImageUrlMap: {}
+            reportImageUrlMap: {},
+            userImageUrl: ''
         };
     },
     created(){
@@ -78,6 +79,16 @@ export default{
         } else {
           this.fetchReportImages();
         }
+    },
+    watch: {
+      userId: {
+      immediate: true,
+      handler() {
+        // Seçili rapor değiştiğinde veya detay sayfası oluşturulduğunda
+        // raporun resmini güncelle
+        this.fetchUserImage();
+      },
+    },
     },
     methods: {
         onPressedReportDetail(report_id) {
@@ -144,6 +155,28 @@ export default{
             } catch (error) {
               console.error("Error while fetching image URL:", error);
             }
+        },
+        async fetchUserImage() {
+          try {
+            const token = this.$store.state.tokenKey;
+            const userId = this.userId; // Örnek olarak reportId'yi buradan alıyorum
+        
+            // Sunucudan base64 kodlu veriyi al
+            const response = await this.$appAxios.get(`/images/user/${userId}`, {
+              headers: {
+                Authorization: `${token}`
+              },
+              responseType: 'text' // responseType'i text olarak belirtiyoruz
+            });
+        
+            // response.data, base64 kodlu veriyi içerir, bu veriyi reportImageUrl'e atıyoruz
+            this.userImageUrl = `data:image/jpeg;base64, ${response.data}`;
+            console.log('user detail response', response)
+            console.log('this.userImageUrl', this.userImageUrl)
+          } catch (error) {
+            console.error("Error while fetching image URL:", error);
+            this.userImageUrl = ''; // Hata durumunda reportImageUrl'i boş bırakabilirsiniz
+          }
         },
     },
     computed: {
