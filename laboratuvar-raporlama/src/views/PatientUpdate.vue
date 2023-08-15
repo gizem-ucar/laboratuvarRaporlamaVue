@@ -7,19 +7,19 @@
                     <div class="report-information">
                         <div class="form-text">
                             Patient TC:                             
-                            <input type="text" v-model="patientAdd.patientTC">
+                            <input type="text" v-model="patientUpdate.patientTC">
                         </div>
                         <div class="form-text">
                             Patient First Name:                             
-                            <input type="text" v-model="patientAdd.patientFirstName">
+                            <input type="text" v-model="patientUpdate.patientFirstName">
                         </div>
                         <div class="form-text">
                             Patient Last Name: 
-                            <input type="text" v-model="patientAdd.patientLastName">
+                            <input type="text" v-model="patientUpdate.patientLastName">
                         </div>
                     </div>
                     <div>
-                        <button class="button" @click="addPatient()">Ekle</button>
+                        <button class="button" @click="updatePatient(this.patientDetail.patientId)">Ekle</button>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ import { mapState } from 'vuex';
 export default{
     data(){
         return{
-            patientAdd:{
+            patientUpdate:{
                 patientTC:null,
                 patientFirstName:null,
                 patientLastName:null
@@ -42,14 +42,14 @@ export default{
         };
     },
     methods:{
-        addPatient(){
+        updatePatient(patientId){
             const token = this.$store.state.tokenKey;
-            this.$appAxios.post("patients", this.patientAdd, {
+            this.$appAxios.put(`patients/${patientId}`, this.patientUpdate, {
               headers: {
                 'Authorization': `${token}`
               }
             }).then(res => {
-                    console.log('this.patientAdd nedir', this.patientAdd)
+                    console.log('this.patientUpdate nedir', this.patientUpdate)
                     console.log(res.data);
                     // console.log(resProductDetail);
                     this.$router.push({name : "PatientsPage"});

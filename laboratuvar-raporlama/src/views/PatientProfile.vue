@@ -3,10 +3,11 @@
 
 <div class="profile">
     <div class="position-right">
-        
+        <router-link :to="{ name: 'PatientUpdate'}">
         <button class="button-black">
                 Düzenle
         </button>
+        </router-link>
          <router-link :to="{ name: 'ReportAdd'}" >
         <button class="button-black">
                 Yeni Rapor Ekle

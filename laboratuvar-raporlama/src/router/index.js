@@ -44,6 +44,11 @@ const routes=[
         component: () => import("@/views/PatientAdd")
     },
     {
+        name: "PatientUpdate",
+        path: "/patientupdate",
+        component: () => import("@/views/PatientUpdate")
+    },
+    {
         name: "ProfilePage",
         path: "/profile",
         component: () => import("@/views/ProfilePage")
